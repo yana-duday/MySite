@@ -25,8 +25,7 @@ function ajaxResponse($status, $message, $data = NULL, $mg = NULL) {
 
 function sendMailgun($data) {
   $api_key = NULL; #Do not EVER put your API key in the checked-in version of this file.
-  $api_key_file = $fopen("/etc/www/site-config/mailgun.api-key");
-  $api_key = fread($api_key_file, 256);
+  $api_key = trim(file_get_contents("/etc/www/site-config/mailgun.api-key"));
   $api_domain = 'yanaduday.com';
   $send_to = 'contact@yanaduday.com';
 
@@ -37,7 +36,7 @@ function sendMailgun($data) {
 
   $config = array();
   $config['api_key'] = $api_key;
-  $config['api_url'] = 'https://api.mailgun.net/v2/'.$api_domain.'/messages';
+  $config['api_url'] = 'https://api.mailgun.net/v3/'.$api_domain.'/messages';
 
   $message = array();
   $message['from'] = $email;
