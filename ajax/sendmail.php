@@ -1,3 +1,4 @@
+<?php
 if(empty($_POST) || !isset($_POST)) {
   ajaxResponse('error', 'Post cannot be empty.');
 } else {
@@ -23,7 +24,7 @@ function ajaxResponse($status, $message, $data = NULL, $mg = NULL) {
 }
 
 function sendMailgun($data) {
-  $api_key = 'key-2nbudgbi9nnzicx4-tefg2eco6exm9y2';
+  $api_key = NULL; #Do not EVER put your API key in the checked-in version of this file.
   $api_domain = 'yanaduday.com';
   $send_to = 'contact@yanaduday.com';
 
@@ -58,5 +59,5 @@ function sendMailgun($data) {
 
   curl_close($curl);
   return $result;
- 
 }
+?>
